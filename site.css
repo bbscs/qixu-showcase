@@ -4,25 +4,24 @@
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: S, use the product's process boundaries as the hero illustration */
 :root {
   color-scheme: light;
-  --paper: #f4f4ec;
-  --ink: #172b25;
-  --muted: #485a51;
-  --line: #c7cfc2;
-  --green: #24483d;
-  --green-dark: #18382e;
-  --wash: #e6eae0;
-  --white: #fafaf3;
-  --accent: #dd873d;
-  --night: #182d25;
-  --night-ink: #f1f4e9;
-  --night-muted: #c3d0c3;
-  --night-line: #567267;
-  --board-top: #86a694;
-  --board-left: #426a56;
-  --board-right: #305644;
-  --board-grid: #cad3c6;
-  --board-trace: #d2dfc8;
-  --board-link: #6d8c7b;
+  --paper: #fcfdff;
+  --ink: #172747;
+  --muted: #465975;
+  --line: #cddbef;
+  --primary: #2457c6;
+  --primary-hover: #1845aa;
+  --wash: #f3f8ff;
+  --white: #ffffff;
+  --accent: #a44a18;
+  --architecture: #ebf4ff;
+  --architecture-line: #b9cde8;
+  --board-top: #b9ddff;
+  --board-left: #72aae6;
+  --board-right: #4d82c3;
+  --board-grid: #dce9fa;
+  --board-trace: #426a9e;
+  --board-link: #567398;
+  --board-chip: #ffb380;
   --font-body: "Instrument Sans", "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
   --font-display: "Instrument Serif", Georgia, "Songti SC", "SimSun", serif;
   --ease: cubic-bezier(.22,.75,.25,1);
@@ -44,18 +43,18 @@ h1, h2, h3, figure { margin: 0; }
 .top-inner { justify-content: space-between; min-height: 72px; gap: 20px; }
 .brand { gap: 10px; font-size: 17px; font-weight: 720; text-decoration: none; white-space: nowrap; }
 .brand small { color: var(--muted); font-size: 13px; font-weight: 520; margin-left: 3px; }
-.mark { display: grid; place-items: center; width: 32px; height: 32px; background: var(--green); color: var(--white); font-family: var(--font-display); font-size: 20px; }
+.mark { display: grid; place-items: center; width: 32px; height: 32px; background: var(--primary); color: var(--white); font-family: var(--font-display); font-size: 20px; }
 nav { gap: clamp(12px, 3vw, 32px); font-size: 14px; color: var(--muted); }
 nav a, .footer a { text-decoration: none; }
 nav a:hover, .footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .hero { display: grid; grid-template-columns: minmax(0,.84fr) minmax(0,1.16fr); align-items: center; gap: clamp(30px, 5vw, 70px); min-height: min(700px, calc(100svh - 72px)); padding-block: 62px; }
 .hero-copy { animation: enter 390ms var(--ease) both; }
 .hero h1 { font-size: clamp(72px, 9vw, 126px); font-weight: 750; letter-spacing: -.085em; line-height: 1; overflow-wrap: break-word; }
-.latin { display: block; margin-block: 5px 24px; color: var(--green); font: 400 .58em/.95 var(--font-display); letter-spacing: -.055em; }
+.latin { display: block; margin-block: 5px 24px; color: var(--primary); font: 400 .58em/.95 var(--font-display); letter-spacing: -.055em; }
 .lede { color: var(--muted); font-size: clamp(16px, 1.6vw, 19px); max-width: 31ch; }
 .hero-actions { gap: 20px; flex-wrap: wrap; margin-top: 28px; font-size: 14px; font-weight: 660; }
-.button { padding: 13px 18px; background: var(--green); color: var(--white); text-decoration: none; transition: background-color 140ms var(--ease), transform 140ms var(--ease); }
-.button:hover { background: var(--green-dark); }
+.button { padding: 13px 18px; background: var(--primary); color: var(--white); text-decoration: none; transition: background-color 140ms var(--ease), transform 140ms var(--ease); }
+.button:hover { background: var(--primary-hover); }
 .button:active { transform: translateY(2px); }
 .text-action { text-underline-offset: 4px; }
 .hero-diagram { min-width: 0; background: var(--wash); border: 1px solid var(--line); }
@@ -65,31 +64,31 @@ nav a:hover, .footer a:hover { text-decoration: underline; text-underline-offset
 .board-right { fill: var(--board-right); }
 .board-top { fill: var(--board-top); stroke: var(--board-right); }
 .board-trace { stroke: var(--board-trace); stroke-width: 1.25; }
-.board-chip { fill: var(--accent); stroke: var(--board-right); }
+.board-chip { fill: var(--board-chip); stroke: var(--accent); }
 .board-link, .board-labels path { stroke: var(--board-link); stroke-width: 1.5; }
 .board-labels { fill: var(--ink); font-size: 17px; font-weight: 680; }
 .section { padding-block: clamp(54px, 8vw, 100px); }
 .section-head { max-width: 680px; margin-bottom: 28px; }
 .section-head h2 { font-size: clamp(32px, 5vw, 55px); letter-spacing: -.055em; line-height: 1.2; overflow-wrap: break-word; }
 .section-head > p { color: var(--muted); margin-top: 12px; }
-.architecture { background: var(--night); color: var(--night-ink); }
-.architecture .section-head > p, .architecture article p, .layers p { color: var(--night-muted); }
-.layers { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--night-line); }
-.layers details { border-bottom: 1px solid var(--night-line); }
+.architecture { background: var(--architecture); }
+.architecture article p, .layers p { color: var(--muted); }
+.layers { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--architecture-line); }
+.layers details { border-bottom: 1px solid var(--architecture-line); }
 .layers summary { display: grid; grid-template-columns: minmax(0,1fr) auto 16px; align-items: center; gap: 16px; min-height: 56px; padding: 12px 6px; cursor: pointer; list-style: none; }
 .layers summary::-webkit-details-marker { display: none; }
 .layers summary::after { content: "+"; color: var(--accent); font-size: 21px; line-height: 1; }
 .layers details[open] summary::after { content: "−"; }
 .layers summary:hover strong { text-decoration: underline; text-underline-offset: 4px; }
 .layers p { padding: 0 36px 15px 6px; max-width: 70ch; }
-.tag { color: var(--night-muted); font-size: 13px; text-align: right; }
+.tag { color: var(--muted); font-size: 13px; text-align: right; }
 .trace { margin-top: 32px; }
 .trace h3 { font-size: 17px; }
 .trace ol { counter-reset: trace; display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 10px; padding: 0; margin: 12px 0 0; list-style: none; }
-.trace li { counter-increment: trace; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--night-line); padding-block: 9px; color: var(--night-muted); font-size: 14px; }
+.trace li { counter-increment: trace; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--architecture-line); padding-block: 9px; color: var(--muted); font-size: 14px; }
 .trace li::before { content: counter(trace, decimal-leading-zero); color: var(--accent); font-size: 12px; }
 .decisions { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; margin-top: 28px; }
-.decisions article { border-top: 1px solid var(--night-line); padding-top: 14px; }
+.decisions article { border-top: 1px solid var(--architecture-line); padding-top: 14px; }
 .decisions h3 { margin-bottom: 6px; font-size: 17px; }
 .decisions p { font-size: 14px; }
 .pipeline { display: grid; grid-template-columns: minmax(0,.82fr) minmax(0,1.18fr); align-items: start; gap: 22px 32px; padding-block: 25px; border-top: 1px solid var(--line); }
@@ -97,7 +96,7 @@ nav a:hover, .footer a:hover { text-decoration: underline; text-underline-offset
 .pipeline p { color: var(--muted); margin-top: 8px; }
 .steps { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
 .steps > div { display: grid; gap: 4px; border-left: 2px solid var(--line); padding-left: 10px; }
-.steps span { color: var(--green); font-size: 12px; }
+.steps span { color: var(--primary); font-size: 12px; }
 .steps small { color: var(--muted); }
 .callout { grid-column: 1 / -1; padding-left: 12px; border-left: 2px solid var(--accent); font-size: 14px; }
 .callout strong { color: var(--ink); margin-right: 7px; }
@@ -105,7 +104,7 @@ nav a:hover, .footer a:hover { text-decoration: underline; text-underline-offset
 .tts-demo fieldset { border: 0; padding: 0; margin: 12px 0 0; min-width: 0; }
 .tts-demo input { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); }
 .tts-demo label { display: inline-block; cursor: pointer; margin: 0 3px 7px 0; padding: 7px 9px; font-size: 13px; background: var(--white); color: var(--muted); transition: background-color 140ms var(--ease), color 140ms var(--ease); }
-.tts-demo input:checked + label { background: var(--green); color: var(--white); }
+.tts-demo input:checked + label { background: var(--primary); color: var(--white); }
 .demo-body { min-height: 67px; }
 .demo-body p { display: none; color: var(--muted); font-size: 14px; }
 .demo-body strong { color: var(--ink); }
