@@ -1,149 +1,186 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-type="software">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="栖序 Qixu 是一个 Windows 桌面陪伴项目。了解它的进程架构、流式对话、主动调度、Live2D 制作和本地语音工程。">
-  <meta name="theme-color" content="#fcfdff">
-  <title>栖序 Qixu · 桌面陪伴系统</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%232457c6'/%3E%3Ccircle cx='22' cy='22' r='11' fill='none' stroke='%23ffffff' stroke-width='4'/%3E%3Cpath d='M28 29l8 8' stroke='%23ffffff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <meta name="description" content="栖序 Qixu 是一个 AI 友好的 Windows 桌宠。你可以用自然语言请本机 Agent 调整设置，也可以和它聊天、设提醒、管理记忆。">
+  <meta name="theme-color" content="#f7faff">
+  <meta name="page-type" content="software">
+  <meta name="site-kind" content="software">
+  <title>栖序 Qixu · 可以用一句话设置的桌宠</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect rx='12' width='48' height='48' fill='%232457c6'/%3E%3Ccircle cx='22' cy='22' r='11' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M28 29l8 8' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./site.css">
 </head>
-<body>
+<body id="top">
   <a class="skip" href="#main">跳到正文</a>
   <header class="top">
     <div class="frame top-inner">
-      <a class="brand" href="#top"><span class="mark" aria-hidden="true">Q</span><span>栖序 <small>Qixu</small></span></a>
+      <a class="brand" href="#top"><span class="mark" aria-hidden="true">Q</span>栖序 <span class="wordmark">Qixu</span></a>
       <nav aria-label="页面导航">
-        <a href="#architecture">架构</a>
-        <a href="#pipelines">技术流程</a>
-        <a href="#verification">验收</a>
+        <a href="#experience">日常体验</a>
+        <a href="#architecture">Agent 设计</a>
+        <a href="#verification">工程验证</a>
       </nav>
     </div>
   </header>
+
   <main id="main">
-    <section class="hero frame" id="top" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <h1 id="hero-title">栖序 <span class="latin">Qixu</span></h1>
-        <p class="lede">一个 Windows 桌面陪伴项目，用 Live2D 呈现角色，接入可切换的语言模型和本地语音，并在用户设定的时机主动开口。</p>
-        <div class="hero-actions">
-          <a class="button" href="#architecture">查看系统架构</a>
-          <a class="text-action" href="#pipelines">了解制作流程</a>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="frame hero-grid">
+        <div class="hero-copy" data-enter>
+          <p class="platform"><span aria-hidden="true"></span> Windows 桌面陪伴</p>
+          <h1 id="hero-title">桌宠怎么陪你？<em>直接说就好。</em></h1>
+          <p class="lede">栖序是一个可以聊天、主动问候的 Windows 桌宠。想改设置时，直接对有本机操作权限的 AI 助手（Agent）说「晚上安静一点」或「把角色挪到左下角」，就能请它代你修改并核对结果。</p>
+          <div class="hero-actions">
+            <a class="button" href="#demo">试试配置演示 <span aria-hidden="true">↘</span></a>
+            <a class="text-action" href="#architecture">了解 Agent 设计 <span aria-hidden="true">→</span></a>
+          </div>
         </div>
+
+        <fieldset class="demo" id="demo" data-enter>
+          <legend class="sr-only">选择一个自然语言配置示例</legend>
+          <div class="window-bar"><span class="window-mark" aria-hidden="true">Q</span><strong>用一句话设置栖序</strong><span class="window-status">网页演示</span></div>
+          <input class="sr-only" type="radio" name="scenario" id="quiet" checked>
+          <input class="sr-only" type="radio" name="scenario" id="window">
+          <input class="sr-only" type="radio" name="scenario" id="persona">
+          <div class="scenario-picker">
+            <label for="quiet">夜间勿扰</label>
+            <label for="window">窗口穿透</label>
+            <label for="persona">对话语气</label>
+          </div>
+          <div class="scenarios">
+            <div class="scenario quiet">
+              <p class="prompt">晚上 11 点到早上 8 点，别主动找我聊天。</p>
+              <ol class="run">
+                <li><span>读取</span><span>查询主动陪伴配置和勿扰时段</span></li>
+                <li><span>应用</span><span>校验两个时间值并一并写入</span></li>
+                <li><span>回读</span><span>勿扰时段已更新为 23:00–08:00</span></li>
+              </ol>
+            </div>
+            <div class="scenario window">
+              <p class="prompt">让角色留在桌面上，鼠标可以点到它后面。</p>
+              <ol class="run">
+                <li><span>读取</span><span>查询窗口可见状态和鼠标穿透设置</span></li>
+                <li><span>应用</span><span>保持角色显示，开启鼠标穿透</span></li>
+                <li><span>回读</span><span>角色可见 · 鼠标穿透已开启</span></li>
+              </ol>
+            </div>
+            <div class="scenario persona">
+              <p class="prompt">说话简短一点，我问细节再展开。</p>
+              <ol class="run">
+                <li><span>读取</span><span>查询当前人设和补充提示</span></li>
+                <li><span>应用</span><span>将简短回复偏好加入人设设置</span></li>
+                <li><span>回读</span><span>偏好已保存，下次生成时生效</span></li>
+              </ol>
+            </div>
+          </div>
+          <p class="demo-foot"><span aria-hidden="true"></span> 模拟本机 Agent 操作，点击上方切换示例。</p>
+        </fieldset>
       </div>
-      <div class="hero-diagram">
-        <svg viewBox="0 0 540 430" role="img" aria-labelledby="diagram-title diagram-desc">
-          <title id="diagram-title">栖序系统分层图</title>
-          <desc id="diagram-desc">四层板依次表示交互、主进程、状态和能力适配。层之间的连线表示消息经主进程协调并访问本地状态及外部能力。</desc>
-          <defs>
-            <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-              <path class="grid-line" d="M24 0H0V24" fill="none"/>
-            </pattern>
-            <g id="board">
-              <path class="board-left" d="M-140 0 0 72v16l-140-72z"/>
-              <path class="board-right" d="M0 72 140 0v16L0 88z"/>
-              <path class="board-top" d="M-140 0 0-72 140 0 0 72z"/>
-              <path class="board-trace" d="M-96 0 0-49 96 0 0 49z M-68 0 0-35 68 0 0 35z M-110 16l25 13m170 0 25-13" fill="none"/>
-              <path class="board-chip" d="M-28 0 0-15 28 0 0 15z"/>
-            </g>
-          </defs>
-          <rect width="540" height="430" fill="url(#grid)"/>
-          <path class="board-link" d="M88 107v179m280-179v179M228 103v230" fill="none" stroke-dasharray="4 6"/>
-          <use href="#board" x="228" y="296"/>
-          <use href="#board" x="228" y="234"/>
-          <use href="#board" x="228" y="172"/>
-          <use href="#board" x="228" y="110"/>
-          <g class="board-labels">
-            <path d="M369 110h25m-25 62h25m-25 62h25m-25 62h25" fill="none"/>
-            <text x="404" y="116">交互</text>
-            <text x="404" y="178">主进程</text>
-            <text x="404" y="240">本地状态</text>
-            <text x="404" y="302">能力适配</text>
-          </g>
-        </svg>
+    </section>
+
+    <section class="section experience" id="experience" aria-labelledby="experience-title">
+      <div class="frame">
+        <div class="section-head">
+          <h2 id="experience-title">陪伴的分寸，你来定。</h2>
+          <p>栖序把主动陪伴、记忆和桌面工具放进日常对话里。什么时候开口、哪些事值得记住，都可以按自己的习惯调整。</p>
+        </div>
+
+        <article class="feature feature-lead">
+          <div class="feature-copy">
+            <h3>该开口时接话，该安静时等你。</h3>
+            <p>栖序可以主动问候，消息留在同一个会话里，回来就能接着聊。你可以选择主动频率、设定勿扰时段，或者随时暂停。你正在输入或等待回复时，主动问候会让出当前对话。</p>
+          </div>
+          <div class="schedule" aria-label="示例时间线：当前对话忙碌时等待，23 点进入勿扰，8 点结束勿扰">
+            <div class="schedule-header"><strong>主动陪伴</strong><span>勿扰示例</span></div>
+            <ol>
+              <li><time>22:40</time><strong>你正在聊天</strong><span>等待当前对话</span></li>
+              <li><time>23:00</time><strong>进入勿扰</strong><span>暂停主动搭话</span></li>
+              <li><time>08:00</time><strong>勿扰结束</strong><span>按设定频率重新安排</span></li>
+            </ol>
+          </div>
+        </article>
+
+        <div class="feature-list">
+          <article class="feature">
+            <h3>你决定什么值得记住</h3>
+            <p>告诉栖序「记住，我喜欢先看结论」，以后聊相关话题时就能用上这条偏好。你可以查看、纠正或删除长期记忆。普通聊天记录和你明确保存的记忆各自管理。</p>
+          </article>
+          <article class="feature">
+            <h3>聊天里就能顺手办小事</h3>
+            <p>问本机时间、做计算、查网页，或者设一个一次性提醒。需要文件时，可使用你授权的工作区。工作区写入会先生成待确认项，你确认后才提交。</p>
+          </article>
+          <article class="feature">
+            <h3>换个模型，保留熟悉的栖序</h3>
+            <p>可配置兼容的模型服务和模型名。人设、会话历史、角色外观和本地朗读独立管理。想换一个模型试试时，已有聊天和角色设置可以继续用。</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="section architecture" id="architecture" aria-labelledby="architecture-title">
       <div class="frame">
         <div class="section-head">
-          <h2 id="architecture-title">系统架构</h2>
-          <p>栖序用 Electron 和 TypeScript 划分角色呈现、主进程协调、对话状态和外部能力。展开各层可查看消息如何交接。</p>
+          <h2 id="architecture-title">为 Agent 提供可读、可写、可核验的入口</h2>
+          <p>Windows 打包版自带本机控制 CLI，源码版也提供同样的管理接口。具备本机执行权限的 Agent 能发现栖序实例，并按能力清单管理已开放的配置，例如模型服务、人设、勿扰和窗口。</p>
         </div>
-        <ol class="layers" aria-label="从用户界面到外部能力的架构">
-          <li><details name="layers" open><summary><strong>交互与呈现</strong><span class="tag">Live2D / WebGL</span></summary><p>透明角色窗绘制 Live2D。管理窗发送聊天请求并更新流式回复，本机 CLI 可以查询状态和应用配置。</p></details></li>
-          <li><details name="layers"><summary><strong>桌面主进程</strong><span class="tag">Electron IPC</span></summary><p>主进程管理窗口生命周期，通过受限 IPC 接收操作。请求由主进程校验并交给对话或配置模块处理。</p></details></li>
-          <li><details name="layers"><summary><strong>对话与本地状态</strong><span class="tag">会话与调度</span></summary><p>对话模块裁剪上下文、处理流式回复与取消，并记录请求终态。主动问候受勿扰、频率和会话忙碌状态约束。</p></details></li>
-          <li><details name="layers"><summary><strong>能力适配</strong><span class="tag">模型、语音与工具</span></summary><p>适配层连接可切换的模型提供者和本机语音服务。工具调用由应用校验，MCP 连接器由用户管理。</p></details></li>
+        <ol class="control-flow" aria-label="Agent 配置流程">
+          <li><strong>发现与读取</strong><p>列出可管理字段、合法值和生效方式，读取当前配置与修订号。</p></li>
+          <li><strong>预览与应用</strong><p>先校验字段并生成变更差异。整批通过才提交，修订冲突时返回最新状态供 Agent 复核。</p></li>
+          <li><strong>回读与恢复</strong><p>写入后逐字段比对，把实际结果交还给 Agent。可从快照恢复非秘密配置。</p></li>
         </ol>
-        <div class="trace">
-          <h3>一条消息如何变成回复</h3>
-          <ol>
-            <li>接收消息</li><li>组装上下文</li><li>流式显示</li><li>确认终态并落盘</li><li>按设置朗读</li>
-          </ol>
+
+        <div class="engineering">
+          <div>
+            <h3>两种 Agent 协作方式</h3>
+            <dl class="roles">
+              <div><dt>外部 Agent 管理桌宠</dt><dd>它把你的配置意图转成 CLI 请求，通过经过鉴权的 Windows 本机命名管道交给主进程。返回结构化结果，便于处理无效参数、冲突和生效状态。</dd></div>
+              <div><dt>栖序在对话中调用工具</dt><dd>模型提出调用，应用检查参数、可用工具和权限，再把结果送回模型。工具循环有轮数和时间预算。MCP 能力由用户配置，涉及工作区写入时由用户确认。</dd></div>
+            </dl>
+          </div>
+          <div>
+            <h3>系统的四层职责</h3>
+            <div class="layers">
+              <details name="layers" open><summary>交互与入口</summary><p>角色窗负责绘制，管理窗负责聊天和设置，本机 CLI 给外部 Agent 提供管理入口。</p></details>
+              <details name="layers"><summary>主进程与权限</summary><p>Electron 主进程管理窗口和生命周期，通过受限 IPC 与本机控制通道接收请求，校验后再交给业务模块。</p></details>
+              <details name="layers"><summary>对话与本地状态</summary><p>组装有限的会话上下文，协调流式回复、取消和主动调度，并分别管理配置、聊天记录和显式记忆。</p></details>
+              <details name="layers"><summary>模型、工具与语音适配</summary><p>模型服务可切换，工具通过注册表与 MCP 连接器接入，语音交给本机服务按需合成。</p></details>
+            </div>
+          </div>
         </div>
-        <div class="decisions">
-          <article><h3>让主动陪伴有节制</h3><p>主动搭话纳入同一对话，遵守暂停、频率和勿扰等规则。用户正在输入或已有请求时延后触发，避免同时开启两轮生成。</p></article>
-          <article><h3>区分上下文和记忆</h3><p>请求使用有限的会话上下文。长期记忆由显式操作管理，用户可以查看、更正或删除条目。</p></article>
-          <article><h3>让跨进程权限可检查</h3><p>桌面渲染通过受限接口请求主进程能力。工具和连接器由应用管理，模型输出经过应用校验后才进入执行路径。</p></article>
+        <div class="message-flow">
+          <h3>一条聊天消息怎么走完一轮</h3>
+          <p>应用先选取最近对话和相关的显式记忆，再发给模型。需要查时间或读网页时，工具结果回到同一轮对话。回复可以边生成边显示，应用记录完成、取消或出错的终态，再按设置处理朗读。</p>
         </div>
       </div>
     </section>
 
-    <section class="section frame" id="pipelines" aria-labelledby="pipelines-title">
-      <div class="section-head">
-        <h2 id="pipelines-title">Live2D 与本地语音</h2>
+    <section class="section compact frame" id="pipelines" aria-labelledby="pipelines-title">
+      <div class="section-head"><h2 id="pipelines-title">角色与声音</h2></div>
+      <div class="paired">
+        <article><h3>Live2D 桌面角色</h3><p>分层建模和参数绑定驱动眨眼、视线和待机。透明窗口支持移动、缩放和穿透，隐藏启动后可从管理窗口恢复。</p></article>
+        <article><h3>本地语音朗读</h3><p>按设置将回复送入本机朗读队列。语音模型按需加载，短时间内复用，长时间空闲后卸载以释放资源。</p></article>
       </div>
-      <article class="pipeline">
-        <div><h3>模型制作与桌面接入</h3><p>将图层拆分并绑定到变形器和参数，用参数曲线驱动眨眼、双轴视线与待机。导出后在透明实窗检查姿态、贴图和物理效果。</p></div>
-        <div class="steps" aria-label="Live2D 制作流程">
-          <div><span>01</span><strong>图层拆分</strong><small>拆分可动部位</small></div>
-          <div><span>02</span><strong>参数绑定</strong><small>网格与变形器</small></div>
-          <div><span>03</span><strong>动作与物理</strong><small>视线、眨眼与待机</small></div>
-          <div><span>04</span><strong>桌面验证</strong><small>透明渲染与恢复</small></div>
-        </div>
-        <p class="callout"><strong>工程难点</strong> 窗口可见与渲染器就绪是两个状态。主进程在渲染器握手后下发初始化信息，让隐藏启动后的窗口也能恢复角色。</p>
-      </article>
-      <article class="pipeline">
-        <div><h3>语音队列与模型生命周期</h3><p>桌面端把朗读任务交给本机语音服务。语音模型按需加载，连续朗读时复用，超过空闲阈值后卸载并释放模型显存。</p></div>
-        <div class="tts-demo" aria-labelledby="tts-demo-title">
-          <div class="demo-head"><strong id="tts-demo-title">合成状态示意</strong></div>
-          <fieldset>
-            <legend class="sr-only">选择语音服务状态</legend>
-            <input type="radio" name="tts-state" id="cold" checked>
-            <label for="cold">冷启动</label>
-            <input type="radio" name="tts-state" id="warm">
-            <label for="warm">连续朗读</label>
-            <input type="radio" name="tts-state" id="idle">
-            <label for="idle">长时间空闲</label>
-            <div class="demo-body">
-              <p class="cold"><strong>服务就绪 → 加载模型 → 合成</strong><br>服务启动和模型加载分别测量，便于定位首句延迟。</p>
-              <p class="warm"><strong>复用模型 → 合成</strong><br>短间隔内沿用同一模型，省去重复加载。</p>
-              <p class="idle"><strong>空闲检查 → 卸载模型</strong><br>服务仍可接收请求，下次合成时重新加载模型。</p>
-            </div>
-          </fieldset>
-        </div>
-      </article>
     </section>
 
     <section class="section verification" id="verification" aria-labelledby="verification-title">
       <div class="frame">
         <div class="section-head">
-          <h2 id="verification-title">工程验证</h2>
-          <p>用模拟故障检查恢复逻辑，用打包实窗和少量真实请求检查产品链路。</p>
+          <h2 id="verification-title">怎么确认它真的生效？</h2>
+          <p>使用隔离配置和打包实窗检查用户路径，再用故障样例验证边界。</p>
         </div>
         <dl class="verify-list">
-          <div><dt>跨进程与窗口生命周期</dt><dd>验证角色窗隐藏后重启、从管理窗恢复显示、切换角色资源及正常退出。</dd></div>
-          <div><dt>真实对话与短程上下文</dt><dd>用合成资料测试打包程序连接真实模型，检查流式增量、终态和第二轮对第一轮的引用。</dd></div>
-          <div><dt>本地语音与资源回收</dt><dd>分别验证服务冷启动、模型冷加载和相邻两句的复用，通过服务状态与运行日志区分阶段。</dd></div>
-          <div><dt>升级与回退</dt><dd>在隔离资料副本上演练兼容，核对关键数据摘要，保留旧入口与可复验的回退路径。</dd></div>
+          <div><dt>Agent 配置</dt><dd>用 CLI 读取实例和修订号，校验一批变更，应用后回读，再检查窗口或下一轮对话。用过期修订号确认并发修改会被拒绝。</dd></div>
+          <div><dt>对话与主动陪伴</dt><dd>用合成对话检查流式增量、取消与终态，验证下一轮能引用上一轮。用可控时间覆盖勿扰、暂停和请求忙碌时的调度。</dd></div>
+          <div><dt>桌面与升级恢复</dt><dd>实际启动打包程序，检查隐藏后恢复显示和模型加载。用隔离资料副本演练升级与回退，核对关键数据。</dd></div>
         </dl>
       </div>
     </section>
   </main>
+
   <footer class="footer frame">
-    <div><strong>栖序 Qixu</strong><p>Windows 桌面陪伴项目 · 技术展示</p></div>
-    <a href="#top">返回顶部 ↑</a>
+    <p><strong>栖序 Qixu</strong> <span>Windows 桌面陪伴项目</span></p>
+    <a class="text-action" href="#top">返回顶部 ↑</a>
   </footer>
 </body>
 </html>
