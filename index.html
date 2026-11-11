@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="栖序 Qixu 是一个 Windows 桌面陪伴项目。了解它的进程架构、流式对话、主动调度、Live2D 制作和本地语音工程。">
-  <meta name="theme-color" content="#f5f7fb">
+  <meta name="theme-color" content="#f4f4ec">
   <title>栖序 Qixu · 桌面陪伴系统</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%23293bf1'/%3E%3Ccircle cx='22' cy='22' r='11' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M28 29l8 8' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%2324483d'/%3E%3Ccircle cx='22' cy='22' r='11' fill='none' stroke='%23fafaf3' stroke-width='4'/%3E%3Cpath d='M28 29l8 8' stroke='%23fafaf3' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./site.css">
 </head>
 <body>
   <a class="skip" href="#main">跳到正文</a>
   <header class="top">
     <div class="frame top-inner">
-      <a class="brand" href="#top"><span class="mark" aria-hidden="true">Q</span><span>栖序 <small>QIXU</small></span></a>
+      <a class="brand" href="#top"><span class="mark" aria-hidden="true">Q</span><span>栖序 <small>Qixu</small></span></a>
       <nav aria-label="页面导航">
         <a href="#architecture">架构</a>
         <a href="#pipelines">技术流程</a>
@@ -24,76 +24,63 @@
   <main id="main">
     <section class="hero frame" id="top" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow"><span></span> DESKTOP COMPANION / WINDOWS</p>
-        <h1 id="hero-title">栖序<span class="latin">Qixu</span></h1>
-        <p class="hero-line">一个懂得何时开口的桌面伙伴。</p>
-        <p class="lede">栖序把 Live2D 角色、可换的语言模型和本地语音放进 Windows 桌面。主动问候有节奏，聊天状态可恢复，工具调用和本地资料访问由明确的规则约束。</p>
+        <h1 id="hero-title">栖序 <span class="latin">Qixu</span></h1>
+        <p class="lede">一个 Windows 桌面陪伴项目，用 Live2D 呈现角色，接入可切换的语言模型和本地语音，并在用户设定的时机主动开口。</p>
         <div class="hero-actions">
-          <a class="button" href="#architecture">查看系统架构 <span aria-hidden="true">↓</span></a>
-          <a class="text-action" href="#pipelines">了解制作流程 <span aria-hidden="true">↗</span></a>
+          <a class="button" href="#architecture">查看系统架构</a>
+          <a class="text-action" href="#pipelines">了解制作流程</a>
         </div>
       </div>
-      <figure class="hero-diagram">
-        <svg viewBox="0 0 540 380" role="img" aria-labelledby="diagram-title diagram-desc">
-          <title id="diagram-title">栖序的桌面界面结构示意</title>
-          <desc id="diagram-desc">原创几何图形代表角色，旁边是独立的管理与对话窗口，两者由桌面主进程协调。</desc>
+      <div class="hero-diagram">
+        <svg viewBox="0 0 540 430" role="img" aria-labelledby="diagram-title diagram-desc">
+          <title id="diagram-title">栖序系统分层图</title>
+          <desc id="diagram-desc">四层板依次表示交互、主进程、状态和能力适配。层之间的连线表示消息经主进程协调并访问本地状态及外部能力。</desc>
           <defs>
-            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <path d="M20 0H0V20" fill="none" stroke="#cbd5fa" stroke-width="1"/>
+            <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+              <path class="grid-line" d="M24 0H0V24" fill="none"/>
             </pattern>
-            <radialGradient id="orb" cx=".36" cy=".26" r=".86">
-              <stop stop-color="#a7b7ff"/><stop offset=".68" stop-color="#5266ff"/><stop offset="1" stop-color="#283be0"/>
-            </radialGradient>
+            <g id="board">
+              <path class="board-left" d="M-140 0 0 72v16l-140-72z"/>
+              <path class="board-right" d="M0 72 140 0v16L0 88z"/>
+              <path class="board-top" d="M-140 0 0-72 140 0 0 72z"/>
+              <path class="board-trace" d="M-96 0 0-49 96 0 0 49z M-68 0 0-35 68 0 0 35z M-110 16l25 13m170 0 25-13" fill="none"/>
+              <path class="board-chip" d="M-28 0 0-15 28 0 0 15z"/>
+            </g>
           </defs>
-          <rect x="1" y="1" width="538" height="378" rx="24" fill="#e9edff"/>
-          <rect x="1" y="1" width="538" height="378" rx="24" fill="url(#grid)"/>
-          <text x="27" y="33" fill="#344790" font-family="monospace" font-size="11" letter-spacing="2">QIXU / DESKTOP RUNTIME</text>
-          <circle cx="500" cy="28" r="5" fill="#3650f3"/><circle cx="517" cy="28" r="5" fill="#9aabf6"/>
-          <path d="M78 270v31h349v-31" fill="none" stroke="#7286f4" stroke-width="1.4" stroke-dasharray="4 5"/>
-          <rect x="187" y="288" width="167" height="27" rx="13.5" fill="#2638cb"/>
-          <text x="270" y="306" fill="white" text-anchor="middle" font-family="monospace" font-size="12" letter-spacing="1">MAIN PROCESS</text>
-          <rect x="46" y="64" width="185" height="202" rx="17" fill="#f3f5ff" fill-opacity=".8" stroke="#a7b5fa" stroke-dasharray="5 4"/>
-          <text x="61" y="88" fill="#344790" font-family="monospace" font-size="10" letter-spacing="1">PET RENDERER</text>
-          <path d="M69 170h138M137 103v133" stroke="#a6b3f3" stroke-dasharray="3 5"/>
-          <ellipse cx="137" cy="177" rx="65" ry="57" fill="none" stroke="#9eacf9" transform="rotate(-24 137 177)"/>
-          <path d="M137 111c14 22 56 32 56 68 0 31-25 51-56 51s-56-20-56-51c0-36 42-46 56-68Z" fill="url(#orb)" stroke="#3a4ce9" stroke-width="1.3"/>
-          <path d="M121 175a3 9 0 0 0 0 18m31-18a3 9 0 0 0 0 18" stroke="#17289a" stroke-width="5" stroke-linecap="round" fill="none"/>
-          <path d="M132 200q5 5 10 0" fill="none" stroke="#17289a" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="187" cy="119" r="4" fill="#fa774f"/>
-          <rect x="253" y="64" width="240" height="202" rx="17" fill="#fbfcff" stroke="#a7b5fa"/>
-          <path d="M253 100h240" stroke="#d7defb"/>
-          <text x="269" y="87" fill="#344790" font-family="monospace" font-size="10" letter-spacing="1">MANAGER / CHAT</text>
-          <path d="M465 82h12" stroke="#8495dc" stroke-width="2" stroke-linecap="round"/>
-          <rect x="272" y="119" width="160" height="35" rx="10" fill="#e6ebff"/>
-          <path d="M285 132h113m-113 9h75" stroke="#8d9fef" stroke-width="3" stroke-linecap="round"/>
-          <rect x="330" y="164" width="143" height="32" rx="10" fill="#3143e8"/>
-          <path d="M343 180h97" stroke="#bfcbff" stroke-width="3" stroke-linecap="round"/>
-          <rect x="272" y="214" width="201" height="33" rx="10" fill="#f2f5fd" stroke="#d7defb"/>
-          <path d="M285 230h61" stroke="#97a7e4" stroke-width="3" stroke-linecap="round"/>
-          <path d="m452 225 10 5-10 5 2-5z" fill="#3143e8"/>
-          <text x="27" y="351" fill="#344790" font-family="monospace" font-size="11" letter-spacing="1">01 / CONCEPT VIEW</text>
-          <path d="M437 347h73" stroke="#7286f4" stroke-width="1"/>
+          <rect width="540" height="430" fill="url(#grid)"/>
+          <path class="board-link" d="M88 107v179m280-179v179M228 103v230" fill="none" stroke-dasharray="4 6"/>
+          <use href="#board" x="228" y="296"/>
+          <use href="#board" x="228" y="234"/>
+          <use href="#board" x="228" y="172"/>
+          <use href="#board" x="228" y="110"/>
+          <g class="board-labels">
+            <path d="M369 110h25m-25 62h25m-25 62h25m-25 62h25" fill="none"/>
+            <text x="404" y="116">交互</text>
+            <text x="404" y="178">主进程</text>
+            <text x="404" y="240">本地状态</text>
+            <text x="404" y="302">能力适配</text>
+          </g>
         </svg>
-        <figcaption>原创界面示意图</figcaption>
-      </figure>
+      </div>
     </section>
 
     <section class="section architecture" id="architecture" aria-labelledby="architecture-title">
       <div class="frame">
         <div class="section-head">
-          <p class="eyebrow"><span></span> 01 / SYSTEM ARCHITECTURE</p>
-          <h2 id="architecture-title">一条对话，四层职责。</h2>
-          <p>用 Electron 和 TypeScript 把渲染、对话编排、持久化与外部能力分开。角色窗专注呈现，管理窗负责交互，本机控制入口提供可检查的配置与状态。</p>
+          <h2 id="architecture-title">系统架构</h2>
+          <p>栖序用 Electron 和 TypeScript 划分角色呈现、主进程协调、对话状态和外部能力。展开各层可查看消息如何交接。</p>
         </div>
         <ol class="layers" aria-label="从用户界面到外部能力的架构">
-          <li><span class="layer-id">01</span><div><h3>交互与呈现</h3><p>透明角色窗 · 对话与管理窗 · 本机 CLI</p></div><span class="tag">Live2D / WebGL</span></li>
-          <li><span class="layer-id">02</span><div><h3>桌面主进程</h3><p>受限 IPC · 窗口生命周期 · 配置校验 · 对话编排</p></div><span class="tag">Electron / TypeScript</span></li>
-          <li><span class="layer-id">03</span><div><h3>对话与本地状态</h3><p>流式响应与取消 · 有限上下文 · 显式记忆 · 主动调度</p></div><span class="tag">Session / Policy</span></li>
-          <li><span class="layer-id">04</span><div><h3>能力适配</h3><p>可切换模型提供者 · 本机语音服务 · 受控工具与 MCP</p></div><span class="tag">Provider / TTS / MCP</span></li>
+          <li><details name="layers" open><summary><strong>交互与呈现</strong><span class="tag">Live2D / WebGL</span></summary><p>透明角色窗绘制 Live2D。管理窗发送聊天请求并更新流式回复，本机 CLI 可以查询状态和应用配置。</p></details></li>
+          <li><details name="layers"><summary><strong>桌面主进程</strong><span class="tag">Electron IPC</span></summary><p>主进程管理窗口生命周期，通过受限 IPC 接收操作。请求由主进程校验并交给对话或配置模块处理。</p></details></li>
+          <li><details name="layers"><summary><strong>对话与本地状态</strong><span class="tag">会话与调度</span></summary><p>对话模块裁剪上下文、处理流式回复与取消，并记录请求终态。主动问候受勿扰、频率和会话忙碌状态约束。</p></details></li>
+          <li><details name="layers"><summary><strong>能力适配</strong><span class="tag">模型、语音与工具</span></summary><p>适配层连接可切换的模型提供者和本机语音服务。工具调用由应用校验，MCP 连接器由用户管理。</p></details></li>
         </ol>
         <div class="trace">
-          <p class="micro">REQUEST TRACE / 请求链路</p>
-          <p>输入消息 <span aria-hidden="true">→</span> 组装有限上下文 <span aria-hidden="true">→</span> 请求模型并流式显示 <span aria-hidden="true">→</span> 确认终态并写入会话 <span aria-hidden="true">→</span> 可选本地朗读</p>
+          <h3>一条消息如何变成回复</h3>
+          <ol>
+            <li>接收消息</li><li>组装上下文</li><li>流式显示</li><li>确认终态并落盘</li><li>按设置朗读</li>
+          </ol>
         </div>
         <div class="decisions">
           <article><h3>让主动陪伴有节制</h3><p>主动搭话纳入同一对话，遵守暂停、频率和勿扰等规则。用户正在输入或已有请求时延后触发，避免同时开启两轮生成。</p></article>
@@ -105,12 +92,10 @@
 
     <section class="section frame" id="pipelines" aria-labelledby="pipelines-title">
       <div class="section-head">
-        <p class="eyebrow"><span></span> 02 / RENDERING &amp; SPEECH</p>
-        <h2 id="pipelines-title">从参数到动作，从文本到语音。</h2>
-        <p>两条技术流程独立于对话模型，分别解决桌面渲染和本机语音合成的问题。</p>
+        <h2 id="pipelines-title">Live2D 与本地语音</h2>
       </div>
       <article class="pipeline">
-        <div><p class="micro blue">A / LIVE2D</p><h3>模型制作与桌面接入</h3><p>将图层拆分并绑定到变形器和参数，用参数曲线驱动眨眼、双轴视线与待机。导出后在透明实窗检查姿态、贴图和物理效果。</p></div>
+        <div><h3>模型制作与桌面接入</h3><p>将图层拆分并绑定到变形器和参数，用参数曲线驱动眨眼、双轴视线与待机。导出后在透明实窗检查姿态、贴图和物理效果。</p></div>
         <div class="steps" aria-label="Live2D 制作流程">
           <div><span>01</span><strong>图层拆分</strong><small>拆分可动部位</small></div>
           <div><span>02</span><strong>参数绑定</strong><small>网格与变形器</small></div>
@@ -120,9 +105,9 @@
         <p class="callout"><strong>工程难点</strong> 窗口可见与渲染器就绪是两个状态。主进程在渲染器握手后下发初始化信息，让隐藏启动后的窗口也能恢复角色。</p>
       </article>
       <article class="pipeline">
-        <div><p class="micro blue">B / LOCAL TTS</p><h3>语音队列与模型生命周期</h3><p>桌面端把朗读任务交给本机语音服务。按需加载模型，连续朗读复用已加载的模型，超过空闲阈值后释放模型显存。</p></div>
+        <div><h3>语音队列与模型生命周期</h3><p>桌面端把朗读任务交给本机语音服务。语音模型按需加载，连续朗读时复用，超过空闲阈值后卸载并释放模型显存。</p></div>
         <div class="tts-demo" aria-labelledby="tts-demo-title">
-          <div class="demo-head"><strong id="tts-demo-title">合成状态示意</strong><span>INTERACTIVE / 无音频</span></div>
+          <div class="demo-head"><strong id="tts-demo-title">合成状态示意</strong></div>
           <fieldset>
             <legend class="sr-only">选择语音服务状态</legend>
             <input type="radio" name="tts-state" id="cold" checked>
@@ -144,9 +129,8 @@
     <section class="section verification" id="verification" aria-labelledby="verification-title">
       <div class="frame">
         <div class="section-head">
-          <p class="eyebrow"><span></span> 03 / VERIFICATION</p>
-          <h2 id="verification-title">用真实链路检验设计。</h2>
-          <p>从模拟故障到打包实窗，再到有限真实服务调用。每一层都有独立的验收范围。</p>
+          <h2 id="verification-title">工程验证</h2>
+          <p>用模拟故障检查恢复逻辑，用打包实窗和少量真实请求检查产品链路。</p>
         </div>
         <dl class="verify-list">
           <div><dt>跨进程与窗口生命周期</dt><dd>验证角色窗隐藏后重启、从管理窗恢复显示、切换角色资源及正常退出。</dd></div>
