@@ -41,14 +41,6 @@
         <fieldset class="demo" id="demo" data-enter>
           <legend class="sr-only">选择一个自然语言配置示例</legend>
           <div class="window-bar"><span class="window-mark" aria-hidden="true">Q</span><strong>用一句话设置栖序</strong><span class="window-status">网页演示</span></div>
-          <div class="signal-stage" data-step="2">
-            <canvas aria-hidden="true"></canvas>
-            <span class="signal-core" aria-hidden="true">Q</span>
-            <ol class="signal-steps" aria-label="配置流程">
-              <li>读取</li><li>应用</li><li>回读</li>
-            </ol>
-            <button class="signal-replay" type="button" hidden aria-label="重播配置流程动效">↻</button>
-          </div>
           <input class="sr-only" type="radio" name="scenario" id="quiet" checked>
           <input class="sr-only" type="radio" name="scenario" id="window">
           <input class="sr-only" type="radio" name="scenario" id="persona">
@@ -83,7 +75,10 @@
               </ol>
             </div>
           </div>
-          <p class="demo-foot"><span aria-hidden="true"></span> 模拟本机 Agent 操作，点击上方切换示例。</p>
+          <div class="demo-foot">
+            <p>模拟本机 Agent 操作</p>
+            <button class="demo-replay" type="button" hidden><span aria-hidden="true">↻</span> 重播</button>
+          </div>
         </fieldset>
       </div>
     </section>
