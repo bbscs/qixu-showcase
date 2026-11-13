@@ -102,19 +102,63 @@ h1 em { display: block; color: var(--blue); font-style: normal; }
 .worldline {
   display: grid;
   place-items: center;
-  padding: 22px 14px 19px;
-  border-bottom: 1px solid var(--line);
+  min-width: 0;
+  min-height: 310px;
+  overflow: hidden;
+  padding: clamp(18px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
   background:
-    radial-gradient(ellipse at 50% 76%, #d5e6ff, transparent 65%),
-    radial-gradient(circle at 1px 1px, #c3d5ed 1px, transparent 1.25px) 0 0 / 16px 16px,
-    #eff5ff;
+    radial-gradient(ellipse at 45% 30%, #fff 0, #ffffff00 67%),
+    radial-gradient(ellipse at 50% 85%, #cfdef3 0, #cfdef300 70%),
+    radial-gradient(circle at 1px 1px, #b6cce84d 1px, transparent 1.4px) 0 0 / 19px 19px,
+    #eaf2fd;
 }
-.worldline-meter { width: min(100%, 352px); }
+.worldline-meter {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 442px);
+  margin-top: 17px;
+}
+.worldline-meter::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: auto 1% -12px;
+  height: 35px;
+  border-radius: 50%;
+  background: #20395740;
+  filter: blur(11px);
+}
+.worldline-panel {
+  position: relative;
+  padding: 26px clamp(12px, 2.2vw, 27px) 22px;
+  border: 1px solid #597493;
+  border-radius: 15px 15px 5px 5px;
+  background:
+    linear-gradient(153deg, #9bb5d454, transparent 43%),
+    linear-gradient(#354f6b 0%, #14283f 54%, #192f48 100%);
+  box-shadow: inset 0 1px 0 #b7d2ec86, inset 0 0 0 4px #1428405c;
+}
+.worldline-fasteners {
+  position: absolute;
+  inset: 9px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 4px 4px, #111f31 1px, #a5b7c7 2px, #526983 3px, transparent 4px) top left / 8px 8px no-repeat,
+    radial-gradient(circle at 4px 4px, #111f31 1px, #a5b7c7 2px, #526983 3px, transparent 4px) top right / 8px 8px no-repeat,
+    radial-gradient(circle at 4px 4px, #111f31 1px, #a5b7c7 2px, #526983 3px, transparent 4px) bottom left / 8px 8px no-repeat,
+    radial-gradient(circle at 4px 4px, #111f31 1px, #a5b7c7 2px, #526983 3px, transparent 4px) bottom right / 8px 8px no-repeat;
+}
 .worldline-tubes {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: clamp(4px, 1vw, 8px);
-  padding-inline: 10px;
+  gap: clamp(3px, .7vw, 9px);
+  padding: 9px 7px 4px;
+  border: 1px solid #7189a2;
+  border-radius: 9px 9px 5px 5px;
+  background: linear-gradient(#0c1726 0%, #1b304a 60%, #121e30);
+  box-shadow: inset 0 4px 10px #030810, 0 1px 0 #b8cadd4d;
 }
 .worldline-tube {
   position: relative;
@@ -122,56 +166,74 @@ h1 em { display: block; color: var(--blue); font-style: normal; }
   display: grid;
   place-items: center;
   min-width: 0;
-  height: clamp(62px, 12vw, 87px);
-  border: 1px solid #a8bddc;
-  border-radius: 45% 45% 7px 7px / 23% 23% 7px 7px;
+  height: clamp(63px, 8vw, 104px);
+  padding-bottom: 11px;
+  border: 1px solid #7e9ab766;
+  border-bottom: 5px solid #253951;
+  border-radius: 48% 48% 5px 5px / 24% 24% 5px 5px;
   background:
-    linear-gradient(90deg, #92b0d15c, #ffffffad 13%, transparent 25%, #bdd4f344 77%, #88a6cb65),
-    radial-gradient(ellipse at 50% 70%, #ffddb580, transparent 58%),
-    linear-gradient(#edf5ff, #dceafb);
-  box-shadow: inset 0 2px 2px #ffffffda, 0 5px 8px #254b7f26;
-  color: #a54c24;
-  font: 500 clamp(1.45rem, 4.6vw, 2rem)/1 "IBM Plex Mono", Consolas, monospace;
-  text-shadow: 0 0 7px #ff9d55a6;
+    radial-gradient(ellipse at 47% 60%, #d98b4552, transparent 60%),
+    linear-gradient(90deg, #52758c54, #a9ceea2b 12%, transparent 32% 71%, #81a5c038 90%),
+    linear-gradient(#253b53, #16253a 81%, #0d192a 82%);
+  box-shadow: inset 0 1px 2px #bad6ec5c, 0 1px 5px #0008;
+  color: #ffd0a4;
+  font: 500 clamp(1.25rem, 3.1vw, 2.2rem)/1 "IBM Plex Mono", Consolas, monospace;
+  text-shadow: 0 0 2px #ffb46c, 0 0 8px #f68a3b, 0 0 17px #e77635a3;
 }
 .worldline-tube::before {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: 17% 18% 15%;
-  border: 1px solid #7898bd5e;
-  border-radius: 43% 43% 4px 4px;
-  background: repeating-linear-gradient(0deg, #7192b129 0 1px, transparent 1px 4px);
+  inset: 13% 12% 16%;
+  border: 1px solid #7292b14d;
+  border-radius: 43% 43% 3px 3px;
+  background:
+    repeating-linear-gradient(0deg, #b6cde02a 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, #b6cde01b 0 1px, transparent 1px 4px);
 }
-.worldline-tube span { grid-area: 1 / 1; }
-.worldline-tube:first-child::after {
+.worldline-tube::after {
   content: "";
   position: absolute;
-  right: 3px;
-  bottom: 21%;
+  top: 15%;
+  left: 10%;
+  width: 16%;
+  height: 53%;
+  border-radius: 50% 20% 35% 35%;
+  background: linear-gradient(#daedff65, #daedff08);
+  transform: rotate(3deg);
+  pointer-events: none;
+}
+.worldline-tube span { position: relative; grid-area: 1 / 1; }
+.worldline-tube:first-child span::after {
+  content: "";
+  position: absolute;
+  bottom: 5%;
+  right: -3px;
   width: 3px;
   height: 3px;
   border-radius: 50%;
   background: currentColor;
-  box-shadow: 0 0 5px #ff9d55a6;
+  box-shadow: 0 0 6px #ff994f;
 }
 .worldline-tube-change span + span { opacity: 0; }
 .worldline-tube:nth-child(6) { --tube-delay: 65ms; }
 .worldline-base {
   position: relative;
-  height: 12px;
-  margin-top: -3px;
-  border: 1px solid #a9bfdc;
-  border-radius: 5px 5px 9px 9px;
-  background: linear-gradient(#eff7ff 0 25%, #b4cbe8 27%, #ccddf2 70%, #9fb7d9);
-  box-shadow: 0 5px 9px #284b7433;
+  height: 23px;
+  margin-inline: -4px;
+  border: 1px solid #4e6986;
+  border-radius: 4px 4px 11px 11px;
+  background:
+    linear-gradient(90deg, #ffffff2c, transparent 30%, #b8cde429 70%, #fff0),
+    linear-gradient(#8298ad, #4c637a 24%, #263b51 30%, #1d2e44 82%, #122237);
+  box-shadow: 0 7px 9px #203b5a54;
 }
 .worldline-base::after {
   content: "";
   position: absolute;
-  inset: 5px 12px auto;
+  inset: 4px 8px auto;
   height: 1px;
-  background: #eef6ff;
+  background: linear-gradient(90deg, #b48762, #e3b58a 24%, #9c6c4c 78%, #c48f68);
 }
 .scenario-picker {
   position: relative;
@@ -278,10 +340,14 @@ h1 em { display: block; color: var(--blue); font-style: normal; }
 .section { padding-block: clamp(64px, 8vw, 114px); }
 .section-head { margin-bottom: clamp(26px, 4vw, 48px); }
 .section-head p { margin-top: 15px; max-width: 46rem; color: var(--muted); font-size: 1.07rem; }
+.agent-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  gap: clamp(16px, 3vw, 32px);
+}
 .agent-example {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(24px, 5vw, 68px);
+  gap: 24px;
   padding: clamp(20px, 4vw, 42px);
   border: 1px solid var(--line);
   border-radius: 20px;
@@ -430,7 +496,7 @@ h1 em { display: block; color: var(--blue); font-style: normal; }
   html { scroll-behavior: smooth; }
   .worldline-tube-change span { animation: tube-digit 7s ease var(--tube-delay, 0ms) infinite; }
   .worldline-tube-change span + span { --digit-start: 0; --digit-end: 1; }
-  .demo:focus-within .worldline-tube-change span { animation-play-state: paused; }
+
   .hero-copy[data-enter] { animation: arrive 440ms var(--ease-out) both; }
   .demo[data-enter] { animation: arrive 500ms var(--ease-out) 70ms both; }
   .scenario-picker:active label { transition-duration: 100ms; }
@@ -447,6 +513,8 @@ h1 em { display: block; color: var(--blue); font-style: normal; }
   .hero-grid { grid-template-columns: 1fr; }
   .demo { width: min(100%, 610px); }
   .feature-lead { grid-template-columns: 1fr; }
+  .agent-layout { grid-template-columns: 1fr; }
+  .worldline { min-height: 230px; }
 }
 @media (max-width: 640px) {
   .frame { width: calc(100% - 36px); }
@@ -460,7 +528,10 @@ h1 em { display: block; color: var(--blue); font-style: normal; }
 
   .scenario-picker { margin-inline: 12px; }
   .scenarios { padding: 12px; }
-  .agent-example, .feature-list, .control-flow, .verify-list, .engineering, .paired { grid-template-columns: 1fr; }
+  .feature-list, .control-flow, .verify-list, .engineering, .paired { grid-template-columns: 1fr; }
+  .worldline { min-height: 180px; padding: 18px 12px; }
+  .worldline-panel { padding: 18px 9px 14px; }
+  .worldline-fasteners { inset: 5px; }
   .schedule-header, .schedule ol { padding-inline: 9px; }
   .schedule li { grid-template-columns: 2.6rem 1fr; gap: 0 5px; }
   .schedule li span { grid-column: 2; }
