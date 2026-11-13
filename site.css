@@ -99,6 +99,58 @@ h1 em { display: block; color: var(--blue); font-style: normal; }
 .window-bar { gap: 10px; min-height: 64px; padding: 10px 18px; border-bottom: 1px solid var(--line); }
 .window-mark { width: 29px; height: 29px; border-radius: 7px; font-size: .95rem; }
 .window-status { margin-left: auto; color: var(--muted); font-size: .8rem; white-space: nowrap; }
+.signal-stage {
+  position: relative;
+  isolation: isolate;
+  height: 222px;
+  overflow: hidden;
+  color: #d7e7ff;
+  background:
+    radial-gradient(ellipse at 50% 40%, #234371 0%, #101e39 58%, #0c162b 100%);
+}
+.signal-stage canvas { position: absolute; inset: 0 0 38px; width: 100%; height: calc(100% - 38px); }
+.signal-core {
+  position: absolute;
+  inset: 0 0 38px;
+  display: grid;
+  place-items: center;
+  color: #f6faff;
+  font: 700 2.3rem/1 "Segoe UI", sans-serif;
+  text-shadow: 0 0 22px #9cc4ff;
+  pointer-events: none;
+}
+.signal-steps {
+  position: absolute;
+  bottom: 9px;
+  inset-inline: 54px;
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 20px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: .78rem;
+}
+.signal-steps li { white-space: nowrap; }
+.signal-steps li + li::before { content: "→"; margin-right: clamp(8px, 2vw, 20px); color: #93aed5; }
+.signal-stage[data-step="0"] li:nth-child(1),
+.signal-stage[data-step="1"] li:nth-child(2),
+.signal-stage[data-step="2"] li:nth-child(3) { color: #ffb784; font-weight: 750; }
+.signal-replay {
+  position: absolute;
+  right: 7px;
+  bottom: 4px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #617da3;
+  border-radius: 10px;
+  background: #152745;
+  color: #e5f0ff;
+  font: 1.25rem/1 "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+.signal-replay:hover { background: #253e63; }
+.signal-replay:focus-visible { outline-color: #ffc49a; outline-offset: 2px; }
 .scenario-picker {
   position: relative;
   isolation: isolate;
@@ -350,6 +402,7 @@ h1 em { display: block; color: var(--blue); font-style: normal; }
   .hero { padding-block: 44px 52px; }
   .hero-actions { gap: 8px 16px; }
   .window-bar, .demo-foot { padding-inline: 12px; }
+  .signal-stage { height: 188px; }
   .scenario-picker { margin-inline: 12px; }
   .scenarios { padding: 12px; }
   .agent-example, .feature-list, .control-flow, .verify-list, .engineering, .paired { grid-template-columns: 1fr; }
