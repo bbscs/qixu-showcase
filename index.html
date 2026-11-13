@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="栖序 Qixu 是一个 AI 友好的 Windows 桌宠。你可以用自然语言请本机 Agent 调整设置，也可以和它聊天、设提醒、管理记忆。">
+  <meta name="description" content="栖序 Qixu 是一个 AI 友好的 Windows 桌宠。无论使用源码版还是打包 EXE，都能用自然语言请 Codex、Claude Code 等本机 Agent 定制人设、模型、窗口和陪伴方式。">
   <meta name="theme-color" content="#f7faff">
   <meta name="page-type" content="software">
   <meta name="site-kind" content="software">
-  <title>栖序 Qixu · 可以用一句话设置的桌宠</title>
+  <title>栖序 Qixu · 用你自己的 Agent 定制桌宠</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect rx='12' width='48' height='48' fill='%232457c6'/%3E%3Ccircle cx='22' cy='22' r='11' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M28 29l8 8' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./site.css">
 </head>
@@ -28,12 +28,12 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="frame hero-grid">
         <div class="hero-copy" data-enter>
-          <p class="platform"><span aria-hidden="true"></span> Windows 桌面陪伴</p>
-          <h1 id="hero-title">桌宠怎么陪你？<em>直接说就好。</em></h1>
-          <p class="lede">栖序是一个可以聊天、主动问候的 Windows 桌宠。想改设置时，直接对有本机操作权限的 AI 助手（Agent）说「晚上安静一点」或「把角色挪到左下角」，就能请它代你修改并核对结果。</p>
+          <p class="platform"><span aria-hidden="true"></span> AI 友好的 Windows 桌宠</p>
+          <h1 id="hero-title">用你自己的 Agent<em>定制栖序</em></h1>
+          <p class="lede">无论你运行源码还是打包好的 EXE，都可以对 Codex、Claude Code 或其他能在本机执行命令的 Agent 描述你想要的桌宠。人设、聊天模型、窗口和勿扰时段都能请它代你设置，无需打开栖序的设置页。</p>
           <div class="hero-actions">
             <a class="button" href="#demo">试试配置演示 <span aria-hidden="true">↘</span></a>
-            <a class="text-action" href="#architecture">了解 Agent 设计 <span aria-hidden="true">→</span></a>
+            <a class="text-action" href="#agent-setup">看看怎么用 <span aria-hidden="true">→</span></a>
           </div>
         </div>
 
@@ -76,6 +76,28 @@
           </div>
           <p class="demo-foot"><span aria-hidden="true"></span> 模拟本机 Agent 操作，点击上方切换示例。</p>
         </fieldset>
+      </div>
+    </section>
+
+    <section class="section agent-setup frame" id="agent-setup" aria-labelledby="agent-setup-title">
+      <div class="section-head">
+        <h2 id="agent-setup-title">把你的使用习惯说给 Agent 听</h2>
+        <p>启动栖序后，在你常用的 Agent 里说明想改什么。源码版和打包 EXE 都附有本机控制入口，Agent 可以在一轮对话里读设置、调整多项配置，再告诉你哪些已经生效。</p>
+      </div>
+      <div class="agent-example">
+        <div>
+          <h3>可以这样对 Agent 说</h3>
+          <blockquote>帮我把栖序放在屏幕左下角，缩小一点，打开鼠标穿透。回复尽量简短，晚上 11 点到早上 8 点别主动找我。改好后帮我确认这些设置。</blockquote>
+        </div>
+        <div>
+          <h3>还能定制哪些内容</h3>
+          <ul>
+            <li><strong>聊天方式</strong> · 更换模型服务、调整人设与回复偏好</li>
+            <li><strong>桌面行为</strong> · 调整位置、大小、置顶和穿透，切换本机已有角色</li>
+            <li><strong>陪伴习惯</strong> · 调整主动频率和勿扰，管理显式记忆与朗读</li>
+          </ul>
+          <p>Agent 会先读取当前版本的能力清单，确认哪些操作可用。</p>
+        </div>
       </div>
     </section>
 
@@ -122,7 +144,7 @@
       <div class="frame">
         <div class="section-head">
           <h2 id="architecture-title">为 Agent 提供可读、可写、可核验的入口</h2>
-          <p>Windows 打包版自带本机控制 CLI，源码版也提供同样的管理接口。具备本机执行权限的 Agent 能发现栖序实例，并按能力清单管理已开放的配置，例如模型服务、人设、勿扰和窗口。</p>
+          <p>源码版和 Windows 打包 EXE 随附同一套本机控制 CLI。有本机执行权限的 Agent 可以查询能力和参数，通过同一个入口直接控制正在运行的栖序，并读取结构化结果。接入只要求 Agent 能调用本机命令。</p>
         </div>
         <ol class="control-flow" aria-label="Agent 配置流程">
           <li><strong>发现与读取</strong><p>列出可管理字段、合法值和生效方式，读取当前配置与修订号。</p></li>

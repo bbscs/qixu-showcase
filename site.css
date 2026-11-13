@@ -173,6 +173,27 @@ h1 em { display: block; color: var(--blue); font-style: normal; }
 .section { padding-block: clamp(64px, 8vw, 114px); }
 .section-head { margin-bottom: clamp(26px, 4vw, 48px); }
 .section-head p { margin-top: 15px; max-width: 46rem; color: var(--muted); font-size: 1.07rem; }
+.agent-example {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 5vw, 68px);
+  padding: clamp(20px, 4vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #eff5ff;
+}
+.agent-example blockquote {
+  margin: 16px 0 0;
+  padding: 16px;
+  border-left: 3px solid var(--blue);
+  border-radius: 0 10px 10px 0;
+  background: white;
+  color: var(--blue-deep);
+}
+.agent-example ul { margin: 12px 0; padding-left: 1.2em; }
+.agent-example li + li { margin-top: 6px; }
+.agent-example p { color: var(--muted); }
+.experience { border-top: 1px solid var(--line); }
 .feature-lead {
   display: grid;
   grid-template-columns: .9fr 1.1fr;
@@ -331,7 +352,7 @@ h1 em { display: block; color: var(--blue); font-style: normal; }
   .window-bar, .demo-foot { padding-inline: 12px; }
   .scenario-picker { margin-inline: 12px; }
   .scenarios { padding: 12px; }
-  .feature-list, .control-flow, .verify-list, .engineering, .paired { grid-template-columns: 1fr; }
+  .agent-example, .feature-list, .control-flow, .verify-list, .engineering, .paired { grid-template-columns: 1fr; }
   .schedule-header, .schedule ol { padding-inline: 9px; }
   .schedule li { grid-template-columns: 2.6rem 1fr; gap: 0 5px; }
   .schedule li span { grid-column: 2; }

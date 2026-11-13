@@ -1,6 +1,6 @@
 # 栖序 Qixu
 
-栖序是一个 AI 友好的 Windows 桌面陪伴项目。源码版和打包版均有本机控制入口，具备本机执行权限的 Agent 可根据用户的自然语言指令读取、调整并核对已开放的配置。
+栖序是一个 AI 友好的 Windows 桌宠。无论使用源码还是打包好的 EXE，都可以对 Codex、Claude Code 或其他有本机命令执行权限的 Agent 描述你想要的设置。Agent 通过同一套本机控制入口查询能力、应用配置并回读结果。
 
 [访问公开介绍页](https://bbscs.github.io/qixu-showcase/) · [Agent 设计](https://bbscs.github.io/qixu-showcase/#architecture)
 
