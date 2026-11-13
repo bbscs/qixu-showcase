@@ -141,10 +141,17 @@
           <div>
             <h3>系统的四层职责</h3>
             <div class="layers">
-              <details name="layers" open><summary>交互与入口</summary><p>角色窗负责绘制，管理窗负责聊天和设置，本机 CLI 给外部 Agent 提供管理入口。</p></details>
-              <details name="layers"><summary>主进程与权限</summary><p>Electron 主进程管理窗口和生命周期，通过受限 IPC 与本机控制通道接收请求，校验后再交给业务模块。</p></details>
-              <details name="layers"><summary>对话与本地状态</summary><p>组装有限的会话上下文，协调流式回复、取消和主动调度，并分别管理配置、聊天记录和显式记忆。</p></details>
-              <details name="layers"><summary>模型、工具与语音适配</summary><p>模型服务可切换，工具通过注册表与 MCP 连接器接入，语音交给本机服务按需合成。</p></details>
+              <div class="layer-stack" aria-hidden="true">
+                <div class="stack-guide"></div>
+                <div class="stack-board" data-board="capabilities"><span></span></div>
+                <div class="stack-board" data-board="state"><span></span></div>
+                <div class="stack-board" data-board="main"><span></span></div>
+                <div class="stack-board" data-board="interface"><span></span></div>
+              </div>
+              <details name="layers" data-layer="interface" open><summary>交互与入口</summary><p>角色窗负责绘制，管理窗负责聊天和设置，本机 CLI 给外部 Agent 提供管理入口。</p></details>
+              <details name="layers" data-layer="main"><summary>主进程与权限</summary><p>Electron 主进程管理窗口和生命周期，通过受限 IPC 与本机控制通道接收请求，校验后再交给业务模块。</p></details>
+              <details name="layers" data-layer="state"><summary>对话与本地状态</summary><p>组装有限的会话上下文，协调流式回复、取消和主动调度，并分别管理配置、聊天记录和显式记忆。</p></details>
+              <details name="layers" data-layer="capabilities"><summary>模型、工具与语音适配</summary><p>模型服务可切换，工具通过注册表与 MCP 连接器接入，语音交给本机服务按需合成。</p></details>
             </div>
           </div>
         </div>
